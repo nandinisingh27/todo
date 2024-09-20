@@ -25,13 +25,25 @@ SECRET_KEY = 'django-insecure-nbp!r9b_%=8w6j1&ioh3i902qe5xp0h#x0p)-933i1wr$u0ust
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_ALLOW_ALL = True
+# SECURE_SSL_REDIRECT = True
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8000",
-    "http://127.0.0.1:8000"
-]
+
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+
+
+
+
+CORS_ALLOW_CREDENTIALS = True
+ALLOWED_HOSTS = ['*']
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://localhost:8888",
+#     "https://127.0.0.1:5500"
+# # ]
 
 
 
@@ -39,6 +51,8 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'sslserver',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls',
-    'corsheaders',
+    
  
 ]
 
@@ -54,7 +68,10 @@ AUTHENTICATION_BACKENDS=[
     'django.contrib.auth.backends.ModelBackend'
 ]
 
+
+
 MIDDLEWARE = [
+
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -91,7 +108,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "to_do_db",
+        "NAME": "to_do",
         "USER": "root",
         "PASSWORD": "Nandini@2004",
         "HOST": "127.0.0.1",
@@ -99,6 +116,11 @@ DATABASES = {
     }
 }
 
+
+
+SESSION_COOKIE_HTTPONLY = False
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'None'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -124,7 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
