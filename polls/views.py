@@ -53,9 +53,7 @@ def login_user(request):
         return JsonResponse({'error': 'Invalid credentials'}, status=401)
     else:
         return JsonResponse({'error':'Invalid method'},status = 405)
-
     
-   
 def logout_user(request):
     if request.method == "POST":
         logout(request)
